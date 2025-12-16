@@ -132,7 +132,24 @@ export default defineConfig({
             "process.env.REACT_APP_API_BASE_URL": JSON.stringify(
                 process.env.REACT_APP_API_BASE_URL,
             ),
-            // Added placeholders for likely needed env vars, relying on .env files to populate or just stay undefined
+            "process.env.REACT_APP_AZURE_AD_CLIENT_ID": JSON.stringify(
+                process.env.REACT_APP_AZURE_AD_CLIENT_ID,
+            ),
+            "process.env.REACT_APP_AZURE_AD_TENANT_ID": JSON.stringify(
+                process.env.REACT_APP_AZURE_AD_TENANT_ID,
+            ),
+            "process.env.REACT_APP_REDIRECT_URI": JSON.stringify(
+                process.env.REACT_APP_REDIRECT_URI,
+            ),
+            "process.env.REACT_APP_SCOPES": JSON.stringify(
+                process.env.REACT_APP_SCOPES,
+            ),
+            "process.env.REACT_APP_APPINSIGHTS_CONNECTION_STRING": JSON.stringify(
+                process.env.REACT_APP_APPINSIGHTS_CONNECTION_STRING,
+            ),
+            "process.env.NODE_ENV": JSON.stringify(
+                process.env.NODE_ENV,
+            ),
         }),
         isDev ? new ReactRefreshRspackPlugin() : null,
     ].filter(Boolean),
