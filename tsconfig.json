@@ -1,0 +1,103 @@
+{
+    "compilerOptions": {
+        "target": "ES2020",
+        "lib": [
+            "DOM",
+            "ES2020"
+        ],
+        "module": "ESNext",
+        "jsx": "react-jsx",
+        "strict": true,
+        "noEmit": true,
+        "skipLibCheck": true,
+        "isolatedModules": true,
+        "resolveJsonModule": true,
+        "moduleResolution": "bundler",
+        "useDefineForClassFields": true,
+        "allowImportingTsExtensions": true,
+        "forceConsistentCasingInFileNames": true,
+        "baseUrl": ".",
+        "paths": {
+            "@/*": [
+                "src/*"
+            ],
+            "@": [
+                "src"
+            ],
+            "@apps/*": [
+                "src/apps/*"
+            ],
+            "@apps": [
+                "src/apps"
+            ],
+            "@assets/*": [
+                "src/assets/*"
+            ],
+            "@assets": [
+                "src/assets"
+            ],
+            "@components/*": [
+                "src/components/*"
+            ],
+            "@components": [
+                "src/components"
+            ],
+            "@hooks/*": [
+                "src/hooks/*"
+            ],
+            "@hooks": [
+                "src/hooks"
+            ],
+            "@lib/*": [
+                "src/lib/*"
+            ],
+            "@lib": [
+                "src/lib"
+            ],
+            "@routes/*": [
+                "src/routes/*"
+            ],
+            "@routes": [
+                "src/routes"
+            ],
+            "@services/*": [
+                "src/services/*"
+            ],
+            "@services": [
+                "src/services"
+            ],
+            "@stores/*": [
+                "src/stores/*"
+            ],
+            "@stores": [
+                "src/stores"
+            ],
+            "@types/*": [
+                "src/types/*"
+            ],
+            "@types": [
+                "src/types"
+            ],
+            "@contexts/*": [
+                "src/contexts/*"
+            ],
+            "@contexts": [
+                "src/contexts"
+            ],
+            "@config/*": [
+                "src/config/*"
+            ],
+            "@config": [
+                "src/config"
+            ]
+        }
+    },
+    "include": [
+        "src"
+    ],
+    "ts-node": {
+        "compilerOptions": {
+            "module": "CommonJS"
+        }
+    }
+}
