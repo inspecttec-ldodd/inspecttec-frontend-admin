@@ -422,3 +422,7 @@ FodyWeavers.xsd
 .env.local
 .DS_Store
 *.log
+.tanstack/tmp/74e16c44-e117ed7a969701dc583cc5acd56d9fae
+.tanstack/tmp/74e16c44-a6751a38c3456a15b31cd0ea284f5e37
+src/routeTree.gen.ts
+src/routeTree.gen.ts

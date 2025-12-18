@@ -11,7 +11,10 @@ import {
     FileCheck,
     AlertCircle,
     MapPin,
-    Box
+    MapPin,
+    Box,
+    Shield,
+    User
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -124,6 +127,19 @@ export function Sidebar() {
                             </li>
 
                             <li className="pt-4 pb-2 px-3 text-xs font-semibold text-slate-500 uppercase tracking-wider">
+                                Client Management
+                            </li>
+                            <li>
+                                <Link to="/client/details" className={cn(
+                                    "flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium transition-colors hover:bg-slate-800 hover:text-white",
+                                    isActive('/client/details') && "bg-slate-800 text-white"
+                                )}>
+                                    <Building2 className="w-4 h-4" />
+                                    Client Details
+                                </Link>
+                            </li>
+
+                            <li className="pt-4 pb-2 px-3 text-xs font-semibold text-slate-500 uppercase tracking-wider">
                                 Asset Management
                             </li>
                             <li>
@@ -153,9 +169,30 @@ export function Sidebar() {
                                 Data & Users
                             </li>
                             <li>
-                                <Link to="/client/users" className="flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium transition-colors hover:bg-slate-800 hover:text-white">
+                                <Link to="/client/roles" className={cn(
+                                    "flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium transition-colors hover:bg-slate-800 hover:text-white",
+                                    isActive('/client/roles') && "bg-slate-800 text-white"
+                                )}>
+                                    <Shield className="w-4 h-4" />
+                                    Roles
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/client/groups" className={cn(
+                                    "flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium transition-colors hover:bg-slate-800 hover:text-white",
+                                    isActive('/client/groups') && "bg-slate-800 text-white"
+                                )}>
                                     <Users className="w-4 h-4" />
-                                    Users & Groups
+                                    User Groups
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/client/users" className={cn(
+                                    "flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium transition-colors hover:bg-slate-800 hover:text-white",
+                                    isActive('/client/users') && "bg-slate-800 text-white"
+                                )}>
+                                    <User className="w-4 h-4" />
+                                    Users
                                 </Link>
                             </li>
                             <li>

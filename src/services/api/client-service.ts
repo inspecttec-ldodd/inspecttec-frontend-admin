@@ -1,13 +1,13 @@
 import { apiFetch } from "./api-client";
-import { Client, ApiResponse, PaginatedResult } from "@/types/api/client";
-import { CreateClientRequest } from "@/types/api/create-client";
+import { ClientSummary, CreateClientRequest, UpdateClientRequest } from "@/types/api/client";
+import { ApiResponse, PaginatedResult } from "@/types/api/common";
 
 export const clientService = {
     /**
      * Create a new client tenant
      */
-    createClient: async (data: CreateClientRequest): Promise<Client> => {
-        const response = await apiFetch<ApiResponse<Client>>("/clients", {
+    createClient: async (data: CreateClientRequest): Promise<ClientSummary> => {
+        const response = await apiFetch<ApiResponse<ClientSummary>>("/clients", {
             method: "POST",
             body: JSON.stringify(data)
         });
@@ -17,25 +17,30 @@ export const clientService = {
     /**
      * Get paginated list of clients
      */
-    getClients: async (page = 1, pageSize = 25, search = ""): Promise<PaginatedResult<Client>> => {
-        const queryParams = new URLSearchParams({
+    getClients: async (page = 1, pageSize = 25, search = ""): Promise<PaginatedResult<ClientSummary>> => {
+        const params = new URLSearchParams({
             page: page.toString(),
             pageSize: pageSize.toString(),
+            search
         });
 
-        if (search) {
-            queryParams.append("search", search);
-        }
-
-        const response = await apiFetch<ApiResponse<PaginatedResult<Client>>>(`/clients?${queryParams.toString()}`);
+        const response = await apiFetch<ApiResponse<PaginatedResult<ClientSummary>>>(`/clients?${params}`);
         return response.result;
     },
 
     /**
      * Get single client details
      */
-    getClientById: async (id: string): Promise<Client> => {
-        const response = await apiFetch<ApiResponse<Client>>(`/clients/${id}`);
+    getClientById: async (id: string): Promise<ClientSummary> => {
+        const response = await apiFetch<ApiResponse<ClientSummary>>(`/clients/${id}`);
+        return response.result;
+    },
+
+    updateClient: async (id: string, data: UpdateClientRequest): Promise<ClientSummary> => {
+        const response = await apiFetch<ApiResponse<ClientSummary>>(`/clients/${id}`, {
+            method: "PUT",
+            body: JSON.stringify(data)
+        });
         return response.result;
     }
 };

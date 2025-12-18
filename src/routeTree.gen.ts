@@ -12,6 +12,21 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ClientsIndexRouteImport } from './routes/clients/index'
 import { Route as ClientsCreateRouteImport } from './routes/clients/create'
+import { Route as ClientLocationsRouteImport } from './routes/client/locations'
+import { Route as ClientDetailsRouteImport } from './routes/client/details'
+import { Route as ClientDashboardRouteImport } from './routes/client/dashboard'
+import { Route as ClientAssetsRouteImport } from './routes/client/assets'
+import { Route as ClientUsersIndexRouteImport } from './routes/client/users/index'
+import { Route as ClientRolesIndexRouteImport } from './routes/client/roles/index'
+import { Route as ClientGroupsIndexRouteImport } from './routes/client/groups/index'
+import { Route as ClientUsersCreateRouteImport } from './routes/client/users/create'
+import { Route as ClientUsersUserIdRouteImport } from './routes/client/users/$userId'
+import { Route as ClientRolesCreateRouteImport } from './routes/client/roles/create'
+import { Route as ClientRolesRoleIdRouteImport } from './routes/client/roles/$roleId'
+import { Route as ClientLocationsCreateRouteImport } from './routes/client/locations/create'
+import { Route as ClientGroupsCreateRouteImport } from './routes/client/groups/create'
+import { Route as ClientGroupsGroupIdRouteImport } from './routes/client/groups/$groupId'
+import { Route as ClientAssetsCreateRouteImport } from './routes/client/assets/create'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -28,35 +43,223 @@ const ClientsCreateRoute = ClientsCreateRouteImport.update({
   path: '/clients/create',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ClientLocationsRoute = ClientLocationsRouteImport.update({
+  id: '/client/locations',
+  path: '/client/locations',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ClientDetailsRoute = ClientDetailsRouteImport.update({
+  id: '/client/details',
+  path: '/client/details',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ClientDashboardRoute = ClientDashboardRouteImport.update({
+  id: '/client/dashboard',
+  path: '/client/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ClientAssetsRoute = ClientAssetsRouteImport.update({
+  id: '/client/assets',
+  path: '/client/assets',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ClientUsersIndexRoute = ClientUsersIndexRouteImport.update({
+  id: '/client/users/',
+  path: '/client/users/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ClientRolesIndexRoute = ClientRolesIndexRouteImport.update({
+  id: '/client/roles/',
+  path: '/client/roles/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ClientGroupsIndexRoute = ClientGroupsIndexRouteImport.update({
+  id: '/client/groups/',
+  path: '/client/groups/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ClientUsersCreateRoute = ClientUsersCreateRouteImport.update({
+  id: '/client/users/create',
+  path: '/client/users/create',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ClientUsersUserIdRoute = ClientUsersUserIdRouteImport.update({
+  id: '/client/users/$userId',
+  path: '/client/users/$userId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ClientRolesCreateRoute = ClientRolesCreateRouteImport.update({
+  id: '/client/roles/create',
+  path: '/client/roles/create',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ClientRolesRoleIdRoute = ClientRolesRoleIdRouteImport.update({
+  id: '/client/roles/$roleId',
+  path: '/client/roles/$roleId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ClientLocationsCreateRoute = ClientLocationsCreateRouteImport.update({
+  id: '/create',
+  path: '/create',
+  getParentRoute: () => ClientLocationsRoute,
+} as any)
+const ClientGroupsCreateRoute = ClientGroupsCreateRouteImport.update({
+  id: '/client/groups/create',
+  path: '/client/groups/create',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ClientGroupsGroupIdRoute = ClientGroupsGroupIdRouteImport.update({
+  id: '/client/groups/$groupId',
+  path: '/client/groups/$groupId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ClientAssetsCreateRoute = ClientAssetsCreateRouteImport.update({
+  id: '/create',
+  path: '/create',
+  getParentRoute: () => ClientAssetsRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/client/assets': typeof ClientAssetsRouteWithChildren
+  '/client/dashboard': typeof ClientDashboardRoute
+  '/client/details': typeof ClientDetailsRoute
+  '/client/locations': typeof ClientLocationsRouteWithChildren
   '/clients/create': typeof ClientsCreateRoute
   '/clients': typeof ClientsIndexRoute
+  '/client/assets/create': typeof ClientAssetsCreateRoute
+  '/client/groups/$groupId': typeof ClientGroupsGroupIdRoute
+  '/client/groups/create': typeof ClientGroupsCreateRoute
+  '/client/locations/create': typeof ClientLocationsCreateRoute
+  '/client/roles/$roleId': typeof ClientRolesRoleIdRoute
+  '/client/roles/create': typeof ClientRolesCreateRoute
+  '/client/users/$userId': typeof ClientUsersUserIdRoute
+  '/client/users/create': typeof ClientUsersCreateRoute
+  '/client/groups': typeof ClientGroupsIndexRoute
+  '/client/roles': typeof ClientRolesIndexRoute
+  '/client/users': typeof ClientUsersIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/client/assets': typeof ClientAssetsRouteWithChildren
+  '/client/dashboard': typeof ClientDashboardRoute
+  '/client/details': typeof ClientDetailsRoute
+  '/client/locations': typeof ClientLocationsRouteWithChildren
   '/clients/create': typeof ClientsCreateRoute
   '/clients': typeof ClientsIndexRoute
+  '/client/assets/create': typeof ClientAssetsCreateRoute
+  '/client/groups/$groupId': typeof ClientGroupsGroupIdRoute
+  '/client/groups/create': typeof ClientGroupsCreateRoute
+  '/client/locations/create': typeof ClientLocationsCreateRoute
+  '/client/roles/$roleId': typeof ClientRolesRoleIdRoute
+  '/client/roles/create': typeof ClientRolesCreateRoute
+  '/client/users/$userId': typeof ClientUsersUserIdRoute
+  '/client/users/create': typeof ClientUsersCreateRoute
+  '/client/groups': typeof ClientGroupsIndexRoute
+  '/client/roles': typeof ClientRolesIndexRoute
+  '/client/users': typeof ClientUsersIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/client/assets': typeof ClientAssetsRouteWithChildren
+  '/client/dashboard': typeof ClientDashboardRoute
+  '/client/details': typeof ClientDetailsRoute
+  '/client/locations': typeof ClientLocationsRouteWithChildren
   '/clients/create': typeof ClientsCreateRoute
   '/clients/': typeof ClientsIndexRoute
+  '/client/assets/create': typeof ClientAssetsCreateRoute
+  '/client/groups/$groupId': typeof ClientGroupsGroupIdRoute
+  '/client/groups/create': typeof ClientGroupsCreateRoute
+  '/client/locations/create': typeof ClientLocationsCreateRoute
+  '/client/roles/$roleId': typeof ClientRolesRoleIdRoute
+  '/client/roles/create': typeof ClientRolesCreateRoute
+  '/client/users/$userId': typeof ClientUsersUserIdRoute
+  '/client/users/create': typeof ClientUsersCreateRoute
+  '/client/groups/': typeof ClientGroupsIndexRoute
+  '/client/roles/': typeof ClientRolesIndexRoute
+  '/client/users/': typeof ClientUsersIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/clients/create' | '/clients'
+  fullPaths:
+    | '/'
+    | '/client/assets'
+    | '/client/dashboard'
+    | '/client/details'
+    | '/client/locations'
+    | '/clients/create'
+    | '/clients'
+    | '/client/assets/create'
+    | '/client/groups/$groupId'
+    | '/client/groups/create'
+    | '/client/locations/create'
+    | '/client/roles/$roleId'
+    | '/client/roles/create'
+    | '/client/users/$userId'
+    | '/client/users/create'
+    | '/client/groups'
+    | '/client/roles'
+    | '/client/users'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/clients/create' | '/clients'
-  id: '__root__' | '/' | '/clients/create' | '/clients/'
+  to:
+    | '/'
+    | '/client/assets'
+    | '/client/dashboard'
+    | '/client/details'
+    | '/client/locations'
+    | '/clients/create'
+    | '/clients'
+    | '/client/assets/create'
+    | '/client/groups/$groupId'
+    | '/client/groups/create'
+    | '/client/locations/create'
+    | '/client/roles/$roleId'
+    | '/client/roles/create'
+    | '/client/users/$userId'
+    | '/client/users/create'
+    | '/client/groups'
+    | '/client/roles'
+    | '/client/users'
+  id:
+    | '__root__'
+    | '/'
+    | '/client/assets'
+    | '/client/dashboard'
+    | '/client/details'
+    | '/client/locations'
+    | '/clients/create'
+    | '/clients/'
+    | '/client/assets/create'
+    | '/client/groups/$groupId'
+    | '/client/groups/create'
+    | '/client/locations/create'
+    | '/client/roles/$roleId'
+    | '/client/roles/create'
+    | '/client/users/$userId'
+    | '/client/users/create'
+    | '/client/groups/'
+    | '/client/roles/'
+    | '/client/users/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ClientAssetsRoute: typeof ClientAssetsRouteWithChildren
+  ClientDashboardRoute: typeof ClientDashboardRoute
+  ClientDetailsRoute: typeof ClientDetailsRoute
+  ClientLocationsRoute: typeof ClientLocationsRouteWithChildren
   ClientsCreateRoute: typeof ClientsCreateRoute
   ClientsIndexRoute: typeof ClientsIndexRoute
+  ClientGroupsGroupIdRoute: typeof ClientGroupsGroupIdRoute
+  ClientGroupsCreateRoute: typeof ClientGroupsCreateRoute
+  ClientRolesRoleIdRoute: typeof ClientRolesRoleIdRoute
+  ClientRolesCreateRoute: typeof ClientRolesCreateRoute
+  ClientUsersUserIdRoute: typeof ClientUsersUserIdRoute
+  ClientUsersCreateRoute: typeof ClientUsersCreateRoute
+  ClientGroupsIndexRoute: typeof ClientGroupsIndexRoute
+  ClientRolesIndexRoute: typeof ClientRolesIndexRoute
+  ClientUsersIndexRoute: typeof ClientUsersIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -82,13 +285,155 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ClientsCreateRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/client/locations': {
+      id: '/client/locations'
+      path: '/client/locations'
+      fullPath: '/client/locations'
+      preLoaderRoute: typeof ClientLocationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/client/details': {
+      id: '/client/details'
+      path: '/client/details'
+      fullPath: '/client/details'
+      preLoaderRoute: typeof ClientDetailsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/client/dashboard': {
+      id: '/client/dashboard'
+      path: '/client/dashboard'
+      fullPath: '/client/dashboard'
+      preLoaderRoute: typeof ClientDashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/client/assets': {
+      id: '/client/assets'
+      path: '/client/assets'
+      fullPath: '/client/assets'
+      preLoaderRoute: typeof ClientAssetsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/client/users/': {
+      id: '/client/users/'
+      path: '/client/users'
+      fullPath: '/client/users'
+      preLoaderRoute: typeof ClientUsersIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/client/roles/': {
+      id: '/client/roles/'
+      path: '/client/roles'
+      fullPath: '/client/roles'
+      preLoaderRoute: typeof ClientRolesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/client/groups/': {
+      id: '/client/groups/'
+      path: '/client/groups'
+      fullPath: '/client/groups'
+      preLoaderRoute: typeof ClientGroupsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/client/users/create': {
+      id: '/client/users/create'
+      path: '/client/users/create'
+      fullPath: '/client/users/create'
+      preLoaderRoute: typeof ClientUsersCreateRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/client/users/$userId': {
+      id: '/client/users/$userId'
+      path: '/client/users/$userId'
+      fullPath: '/client/users/$userId'
+      preLoaderRoute: typeof ClientUsersUserIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/client/roles/create': {
+      id: '/client/roles/create'
+      path: '/client/roles/create'
+      fullPath: '/client/roles/create'
+      preLoaderRoute: typeof ClientRolesCreateRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/client/roles/$roleId': {
+      id: '/client/roles/$roleId'
+      path: '/client/roles/$roleId'
+      fullPath: '/client/roles/$roleId'
+      preLoaderRoute: typeof ClientRolesRoleIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/client/locations/create': {
+      id: '/client/locations/create'
+      path: '/create'
+      fullPath: '/client/locations/create'
+      preLoaderRoute: typeof ClientLocationsCreateRouteImport
+      parentRoute: typeof ClientLocationsRoute
+    }
+    '/client/groups/create': {
+      id: '/client/groups/create'
+      path: '/client/groups/create'
+      fullPath: '/client/groups/create'
+      preLoaderRoute: typeof ClientGroupsCreateRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/client/groups/$groupId': {
+      id: '/client/groups/$groupId'
+      path: '/client/groups/$groupId'
+      fullPath: '/client/groups/$groupId'
+      preLoaderRoute: typeof ClientGroupsGroupIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/client/assets/create': {
+      id: '/client/assets/create'
+      path: '/create'
+      fullPath: '/client/assets/create'
+      preLoaderRoute: typeof ClientAssetsCreateRouteImport
+      parentRoute: typeof ClientAssetsRoute
+    }
   }
 }
 
+interface ClientAssetsRouteChildren {
+  ClientAssetsCreateRoute: typeof ClientAssetsCreateRoute
+}
+
+const ClientAssetsRouteChildren: ClientAssetsRouteChildren = {
+  ClientAssetsCreateRoute: ClientAssetsCreateRoute,
+}
+
+const ClientAssetsRouteWithChildren = ClientAssetsRoute._addFileChildren(
+  ClientAssetsRouteChildren,
+)
+
+interface ClientLocationsRouteChildren {
+  ClientLocationsCreateRoute: typeof ClientLocationsCreateRoute
+}
+
+const ClientLocationsRouteChildren: ClientLocationsRouteChildren = {
+  ClientLocationsCreateRoute: ClientLocationsCreateRoute,
+}
+
+const ClientLocationsRouteWithChildren = ClientLocationsRoute._addFileChildren(
+  ClientLocationsRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ClientAssetsRoute: ClientAssetsRouteWithChildren,
+  ClientDashboardRoute: ClientDashboardRoute,
+  ClientDetailsRoute: ClientDetailsRoute,
+  ClientLocationsRoute: ClientLocationsRouteWithChildren,
   ClientsCreateRoute: ClientsCreateRoute,
   ClientsIndexRoute: ClientsIndexRoute,
+  ClientGroupsGroupIdRoute: ClientGroupsGroupIdRoute,
+  ClientGroupsCreateRoute: ClientGroupsCreateRoute,
+  ClientRolesRoleIdRoute: ClientRolesRoleIdRoute,
+  ClientRolesCreateRoute: ClientRolesCreateRoute,
+  ClientUsersUserIdRoute: ClientUsersUserIdRoute,
+  ClientUsersCreateRoute: ClientUsersCreateRoute,
+  ClientGroupsIndexRoute: ClientGroupsIndexRoute,
+  ClientRolesIndexRoute: ClientRolesIndexRoute,
+  ClientUsersIndexRoute: ClientUsersIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

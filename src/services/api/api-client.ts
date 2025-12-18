@@ -1,6 +1,7 @@
 import Config from "@/config/config";
 import { msalInstance } from "@/services/auth/msalConfig";
 import { InteractionRequiredAuthError } from "@azure/msal-browser";
+import { useAdminStore } from "@/stores/admin-store";
 
 /**
  * Base HTTP client that handles auth headers automatically
@@ -28,10 +29,14 @@ export async function apiFetch<T>(endpoint: string, options: RequestInit = {}): 
         throw error;
     }
 
-    const headers = {
+    // Check for selected client context
+    const selectedClientId = useAdminStore.getState().selectedClientId;
+
+    const headers: Record<string, string> = {
         "Content-Type": "application/json",
         "Authorization": `Bearer ${accessToken}`,
-        ...options.headers,
+        ...(selectedClientId ? { "X-Tenant-ID": selectedClientId } : {}),
+        ...options.headers as Record<string, string>,
     };
 
     const baseUrl = Config.API_BASE_URL?.replace(/\/+$/, "") || "";
