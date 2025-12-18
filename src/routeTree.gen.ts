@@ -16,6 +16,7 @@ import { Route as ClientLocationsRouteImport } from './routes/client/locations'
 import { Route as ClientDetailsRouteImport } from './routes/client/details'
 import { Route as ClientDashboardRouteImport } from './routes/client/dashboard'
 import { Route as ClientAssetsRouteImport } from './routes/client/assets'
+import { Route as ClientAssetGroupsRouteImport } from './routes/client/asset-groups'
 import { Route as ClientUsersIndexRouteImport } from './routes/client/users/index'
 import { Route as ClientRolesIndexRouteImport } from './routes/client/roles/index'
 import { Route as ClientGroupsIndexRouteImport } from './routes/client/groups/index'
@@ -24,9 +25,12 @@ import { Route as ClientUsersUserIdRouteImport } from './routes/client/users/$us
 import { Route as ClientRolesCreateRouteImport } from './routes/client/roles/create'
 import { Route as ClientRolesRoleIdRouteImport } from './routes/client/roles/$roleId'
 import { Route as ClientLocationsCreateRouteImport } from './routes/client/locations/create'
+import { Route as ClientLocationsLocationIdRouteImport } from './routes/client/locations/$locationId'
 import { Route as ClientGroupsCreateRouteImport } from './routes/client/groups/create'
 import { Route as ClientGroupsGroupIdRouteImport } from './routes/client/groups/$groupId'
 import { Route as ClientAssetsCreateRouteImport } from './routes/client/assets/create'
+import { Route as ClientAssetsAssetIdRouteImport } from './routes/client/assets/$assetId'
+import { Route as ClientAssetGroupsGroupIdRouteImport } from './routes/client/asset-groups/$groupId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -61,6 +65,11 @@ const ClientDashboardRoute = ClientDashboardRouteImport.update({
 const ClientAssetsRoute = ClientAssetsRouteImport.update({
   id: '/client/assets',
   path: '/client/assets',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ClientAssetGroupsRoute = ClientAssetGroupsRouteImport.update({
+  id: '/client/asset-groups',
+  path: '/client/asset-groups',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ClientUsersIndexRoute = ClientUsersIndexRouteImport.update({
@@ -103,6 +112,12 @@ const ClientLocationsCreateRoute = ClientLocationsCreateRouteImport.update({
   path: '/create',
   getParentRoute: () => ClientLocationsRoute,
 } as any)
+const ClientLocationsLocationIdRoute =
+  ClientLocationsLocationIdRouteImport.update({
+    id: '/$locationId',
+    path: '/$locationId',
+    getParentRoute: () => ClientLocationsRoute,
+  } as any)
 const ClientGroupsCreateRoute = ClientGroupsCreateRouteImport.update({
   id: '/client/groups/create',
   path: '/client/groups/create',
@@ -118,18 +133,33 @@ const ClientAssetsCreateRoute = ClientAssetsCreateRouteImport.update({
   path: '/create',
   getParentRoute: () => ClientAssetsRoute,
 } as any)
+const ClientAssetsAssetIdRoute = ClientAssetsAssetIdRouteImport.update({
+  id: '/$assetId',
+  path: '/$assetId',
+  getParentRoute: () => ClientAssetsRoute,
+} as any)
+const ClientAssetGroupsGroupIdRoute =
+  ClientAssetGroupsGroupIdRouteImport.update({
+    id: '/$groupId',
+    path: '/$groupId',
+    getParentRoute: () => ClientAssetGroupsRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/client/asset-groups': typeof ClientAssetGroupsRouteWithChildren
   '/client/assets': typeof ClientAssetsRouteWithChildren
   '/client/dashboard': typeof ClientDashboardRoute
   '/client/details': typeof ClientDetailsRoute
   '/client/locations': typeof ClientLocationsRouteWithChildren
   '/clients/create': typeof ClientsCreateRoute
   '/clients': typeof ClientsIndexRoute
+  '/client/asset-groups/$groupId': typeof ClientAssetGroupsGroupIdRoute
+  '/client/assets/$assetId': typeof ClientAssetsAssetIdRoute
   '/client/assets/create': typeof ClientAssetsCreateRoute
   '/client/groups/$groupId': typeof ClientGroupsGroupIdRoute
   '/client/groups/create': typeof ClientGroupsCreateRoute
+  '/client/locations/$locationId': typeof ClientLocationsLocationIdRoute
   '/client/locations/create': typeof ClientLocationsCreateRoute
   '/client/roles/$roleId': typeof ClientRolesRoleIdRoute
   '/client/roles/create': typeof ClientRolesCreateRoute
@@ -141,15 +171,19 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/client/asset-groups': typeof ClientAssetGroupsRouteWithChildren
   '/client/assets': typeof ClientAssetsRouteWithChildren
   '/client/dashboard': typeof ClientDashboardRoute
   '/client/details': typeof ClientDetailsRoute
   '/client/locations': typeof ClientLocationsRouteWithChildren
   '/clients/create': typeof ClientsCreateRoute
   '/clients': typeof ClientsIndexRoute
+  '/client/asset-groups/$groupId': typeof ClientAssetGroupsGroupIdRoute
+  '/client/assets/$assetId': typeof ClientAssetsAssetIdRoute
   '/client/assets/create': typeof ClientAssetsCreateRoute
   '/client/groups/$groupId': typeof ClientGroupsGroupIdRoute
   '/client/groups/create': typeof ClientGroupsCreateRoute
+  '/client/locations/$locationId': typeof ClientLocationsLocationIdRoute
   '/client/locations/create': typeof ClientLocationsCreateRoute
   '/client/roles/$roleId': typeof ClientRolesRoleIdRoute
   '/client/roles/create': typeof ClientRolesCreateRoute
@@ -162,15 +196,19 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/client/asset-groups': typeof ClientAssetGroupsRouteWithChildren
   '/client/assets': typeof ClientAssetsRouteWithChildren
   '/client/dashboard': typeof ClientDashboardRoute
   '/client/details': typeof ClientDetailsRoute
   '/client/locations': typeof ClientLocationsRouteWithChildren
   '/clients/create': typeof ClientsCreateRoute
   '/clients/': typeof ClientsIndexRoute
+  '/client/asset-groups/$groupId': typeof ClientAssetGroupsGroupIdRoute
+  '/client/assets/$assetId': typeof ClientAssetsAssetIdRoute
   '/client/assets/create': typeof ClientAssetsCreateRoute
   '/client/groups/$groupId': typeof ClientGroupsGroupIdRoute
   '/client/groups/create': typeof ClientGroupsCreateRoute
+  '/client/locations/$locationId': typeof ClientLocationsLocationIdRoute
   '/client/locations/create': typeof ClientLocationsCreateRoute
   '/client/roles/$roleId': typeof ClientRolesRoleIdRoute
   '/client/roles/create': typeof ClientRolesCreateRoute
@@ -184,15 +222,19 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/client/asset-groups'
     | '/client/assets'
     | '/client/dashboard'
     | '/client/details'
     | '/client/locations'
     | '/clients/create'
     | '/clients'
+    | '/client/asset-groups/$groupId'
+    | '/client/assets/$assetId'
     | '/client/assets/create'
     | '/client/groups/$groupId'
     | '/client/groups/create'
+    | '/client/locations/$locationId'
     | '/client/locations/create'
     | '/client/roles/$roleId'
     | '/client/roles/create'
@@ -204,15 +246,19 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/client/asset-groups'
     | '/client/assets'
     | '/client/dashboard'
     | '/client/details'
     | '/client/locations'
     | '/clients/create'
     | '/clients'
+    | '/client/asset-groups/$groupId'
+    | '/client/assets/$assetId'
     | '/client/assets/create'
     | '/client/groups/$groupId'
     | '/client/groups/create'
+    | '/client/locations/$locationId'
     | '/client/locations/create'
     | '/client/roles/$roleId'
     | '/client/roles/create'
@@ -224,15 +270,19 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/client/asset-groups'
     | '/client/assets'
     | '/client/dashboard'
     | '/client/details'
     | '/client/locations'
     | '/clients/create'
     | '/clients/'
+    | '/client/asset-groups/$groupId'
+    | '/client/assets/$assetId'
     | '/client/assets/create'
     | '/client/groups/$groupId'
     | '/client/groups/create'
+    | '/client/locations/$locationId'
     | '/client/locations/create'
     | '/client/roles/$roleId'
     | '/client/roles/create'
@@ -245,6 +295,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ClientAssetGroupsRoute: typeof ClientAssetGroupsRouteWithChildren
   ClientAssetsRoute: typeof ClientAssetsRouteWithChildren
   ClientDashboardRoute: typeof ClientDashboardRoute
   ClientDetailsRoute: typeof ClientDetailsRoute
@@ -313,6 +364,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ClientAssetsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/client/asset-groups': {
+      id: '/client/asset-groups'
+      path: '/client/asset-groups'
+      fullPath: '/client/asset-groups'
+      preLoaderRoute: typeof ClientAssetGroupsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/client/users/': {
       id: '/client/users/'
       path: '/client/users'
@@ -369,6 +427,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ClientLocationsCreateRouteImport
       parentRoute: typeof ClientLocationsRoute
     }
+    '/client/locations/$locationId': {
+      id: '/client/locations/$locationId'
+      path: '/$locationId'
+      fullPath: '/client/locations/$locationId'
+      preLoaderRoute: typeof ClientLocationsLocationIdRouteImport
+      parentRoute: typeof ClientLocationsRoute
+    }
     '/client/groups/create': {
       id: '/client/groups/create'
       path: '/client/groups/create'
@@ -390,14 +455,41 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ClientAssetsCreateRouteImport
       parentRoute: typeof ClientAssetsRoute
     }
+    '/client/assets/$assetId': {
+      id: '/client/assets/$assetId'
+      path: '/$assetId'
+      fullPath: '/client/assets/$assetId'
+      preLoaderRoute: typeof ClientAssetsAssetIdRouteImport
+      parentRoute: typeof ClientAssetsRoute
+    }
+    '/client/asset-groups/$groupId': {
+      id: '/client/asset-groups/$groupId'
+      path: '/$groupId'
+      fullPath: '/client/asset-groups/$groupId'
+      preLoaderRoute: typeof ClientAssetGroupsGroupIdRouteImport
+      parentRoute: typeof ClientAssetGroupsRoute
+    }
   }
 }
 
+interface ClientAssetGroupsRouteChildren {
+  ClientAssetGroupsGroupIdRoute: typeof ClientAssetGroupsGroupIdRoute
+}
+
+const ClientAssetGroupsRouteChildren: ClientAssetGroupsRouteChildren = {
+  ClientAssetGroupsGroupIdRoute: ClientAssetGroupsGroupIdRoute,
+}
+
+const ClientAssetGroupsRouteWithChildren =
+  ClientAssetGroupsRoute._addFileChildren(ClientAssetGroupsRouteChildren)
+
 interface ClientAssetsRouteChildren {
+  ClientAssetsAssetIdRoute: typeof ClientAssetsAssetIdRoute
   ClientAssetsCreateRoute: typeof ClientAssetsCreateRoute
 }
 
 const ClientAssetsRouteChildren: ClientAssetsRouteChildren = {
+  ClientAssetsAssetIdRoute: ClientAssetsAssetIdRoute,
   ClientAssetsCreateRoute: ClientAssetsCreateRoute,
 }
 
@@ -406,10 +498,12 @@ const ClientAssetsRouteWithChildren = ClientAssetsRoute._addFileChildren(
 )
 
 interface ClientLocationsRouteChildren {
+  ClientLocationsLocationIdRoute: typeof ClientLocationsLocationIdRoute
   ClientLocationsCreateRoute: typeof ClientLocationsCreateRoute
 }
 
 const ClientLocationsRouteChildren: ClientLocationsRouteChildren = {
+  ClientLocationsLocationIdRoute: ClientLocationsLocationIdRoute,
   ClientLocationsCreateRoute: ClientLocationsCreateRoute,
 }
 
@@ -419,6 +513,7 @@ const ClientLocationsRouteWithChildren = ClientLocationsRoute._addFileChildren(
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ClientAssetGroupsRoute: ClientAssetGroupsRouteWithChildren,
   ClientAssetsRoute: ClientAssetsRouteWithChildren,
   ClientDashboardRoute: ClientDashboardRoute,
   ClientDetailsRoute: ClientDetailsRoute,

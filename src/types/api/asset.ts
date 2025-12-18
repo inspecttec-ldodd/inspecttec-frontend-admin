@@ -51,3 +51,17 @@ export interface CreateAssetRequest {
     isActive?: boolean;
 }
 
+export interface UpdateAssetRequest {
+    locationId: string;
+    assetGroupId: string;
+    assetName: string;
+    identifyingNumber?: string;
+    serialNumber?: string;
+    description?: string;
+    assetType?: AssetType;
+    manufacturerName?: string;
+    modelNumber?: string;
+    installationDate?: string;
+    isActive: boolean;
+}
+

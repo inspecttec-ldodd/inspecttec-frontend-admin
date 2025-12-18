@@ -1,5 +1,5 @@
 import { apiFetch } from "./api-client";
-import { AssetSummary, AssetListResult, CreateAssetRequest } from "@/types/api/asset";
+import { AssetSummary, AssetListResult, CreateAssetRequest, UpdateAssetRequest } from "@/types/api/asset";
 import { ApiResponse } from "@/types/api/common";
 import { useAdminStore } from "@/stores/admin-store";
 
@@ -32,6 +32,19 @@ export const assetService = {
         const response = await apiFetch<ApiResponse<AssetSummary>>(`/assets`, {
             method: "POST",
             body: JSON.stringify(payload)
+        });
+        return response.result;
+    },
+
+    getAssetById: async (id: string): Promise<AssetSummary> => {
+        const response = await apiFetch<ApiResponse<AssetSummary>>(`/assets/${id}`);
+        return response.result;
+    },
+
+    updateAsset: async (id: string, data: UpdateAssetRequest): Promise<AssetSummary> => {
+        const response = await apiFetch<ApiResponse<AssetSummary>>(`/assets/${id}`, {
+            method: "PUT",
+            body: JSON.stringify(data)
         });
         return response.result;
     }

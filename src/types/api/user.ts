@@ -2,14 +2,21 @@ import { PaginatedResult } from "./common";
 
 export interface UserSummary {
     id: string;
+    email: string;
     firstName: string;
     lastName: string;
-    email: string;
-    jobTitle?: string;
+    displayName?: string; // Not in JSON, but we compute it UI side or optional
+    primaryMobile?: string; // In JSON
     isActive: boolean;
-    createdDate: string;
     lastLoginDate?: string;
-    // roles?: string[]; // Roles might be direct or via group.
+
+    // Fields expected by new model but missing in current JSON response
+    // keeping them optional for now so TS doesn't complain if mapped manually
+    roleCount?: number;
+    groupCount?: number;
+    invitationStatus?: string;
+    createdDate?: string;
+    jobTitle?: string;
 }
 
 export interface UserListResult extends PaginatedResult<UserSummary> {

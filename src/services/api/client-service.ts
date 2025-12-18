@@ -1,5 +1,5 @@
 import { apiFetch } from "./api-client";
-import { ClientSummary, CreateClientRequest, UpdateClientRequest } from "@/types/api/client";
+import { ClientSummary, ClientDetail, CreateClientRequest, UpdateClientRequest } from "@/types/api/client";
 import { ApiResponse, PaginatedResult } from "@/types/api/common";
 
 export const clientService = {
@@ -31,8 +31,8 @@ export const clientService = {
     /**
      * Get single client details
      */
-    getClientById: async (id: string): Promise<ClientSummary> => {
-        const response = await apiFetch<ApiResponse<ClientSummary>>(`/clients/${id}`);
+    getClientById: async (id: string): Promise<ClientDetail> => {
+        const response = await apiFetch<ApiResponse<ClientDetail>>(`/clients/${id}`);
         return response.result;
     },
 

@@ -33,3 +33,19 @@ export interface CreateLocationRequest {
     isMainLocation: boolean;
     isActive?: boolean;
 }
+
+export interface UpdateLocationRequest {
+    locationName: string;
+    description?: string;
+    address1: string;
+    address2?: string;
+    city: string;
+    state: string;
+    postalCode: string;
+    country?: string;
+    phone?: string;
+    email?: string;
+    timeZoneId?: string;
+    isMainLocation: boolean;
+    isActive: boolean;
+}

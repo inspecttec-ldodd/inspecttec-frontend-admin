@@ -10,21 +10,11 @@ export const userService = {
             search
         });
 
-        type RawUserResponse = {
-            items: UserSummary[];
-            totalCount: number;
-            pageNumber: number;
-            pageSize: number;
-        };
-
-        const response = await apiFetch<ApiResponse<RawUserResponse>>(`/users?${params}`);
-        return {
-            items: response.result.items,
-            totalCount: response.result.totalCount,
-            page: response.result.pageNumber,
-            pageSize: response.result.pageSize,
-            totalPages: Math.ceil(response.result.totalCount / response.result.pageSize)
-        };
+        // The backend returns a standard PaginatedResult structure with 'items'
+        // NOT a custom structure with 'users' property as previously thought.
+        // We map the raw items to our UserSummary type.
+        const response = await apiFetch<ApiResponse<UserListResult>>(`/users?${params}`);
+        return response.result;
     },
 
     getUserById: async (userId: string): Promise<UserSummary> => {

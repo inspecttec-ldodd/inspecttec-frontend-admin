@@ -1,5 +1,5 @@
 import { apiFetch } from "./api-client";
-import { LocationSummary, LocationListResult, CreateLocationRequest } from "@/types/api/location";
+import { LocationSummary, LocationListResult, CreateLocationRequest, UpdateLocationRequest } from "@/types/api/location";
 import { ApiResponse } from "@/types/api/common";
 import { useAdminStore } from "@/stores/admin-store";
 
@@ -36,6 +36,21 @@ export const locationService = {
         const response = await apiFetch<ApiResponse<LocationSummary>>(`/locations`, {
             method: "POST",
             body: JSON.stringify(payload)
+        });
+        return response.result;
+    },
+
+    getLocationById: async (id: string): Promise<LocationSummary> => {
+        // Assuming API supports this. If not, we might need to find it in the list or backend needs update.
+        // Based on plan, we assume it exists.
+        const response = await apiFetch<ApiResponse<LocationSummary>>(`/locations/${id}`);
+        return response.result;
+    },
+
+    updateLocation: async (id: string, data: UpdateLocationRequest): Promise<LocationSummary> => {
+        const response = await apiFetch<ApiResponse<LocationSummary>>(`/locations/${id}`, {
+            method: "PUT",
+            body: JSON.stringify(data)
         });
         return response.result;
     }

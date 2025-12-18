@@ -163,7 +163,7 @@ function UserGroupsList() {
         </Table>
       </div>
 
-      <AlertDialog open={!!groupToDelete} onOpenChange={(open) => !open && setGroupToDelete(null)}>
+      <AlertDialog open={!!groupToDelete} onOpenChange={(open: boolean) => !open && setGroupToDelete(null)}>
         <AlertDialogContent>
           <AlertDialogHeader>
             <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>

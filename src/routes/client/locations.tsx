@@ -48,7 +48,9 @@ function ClientLocations() {
             ) : data?.items.map((loc) => (
               <tr key={loc.id} className="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
                 <td className="px-6 py-4 font-medium">
-                  {loc.locationName}
+                  <Link to="/client/locations/$locationId" params={{ locationId: loc.id }} className="hover:underline text-blue-600 dark:text-blue-400">
+                    {loc.locationName}
+                  </Link>
                   {loc.isMainLocation && <span className="ml-2 text-xs bg-blue-100 text-blue-700 px-1.5 py-0.5 rounded">Main</span>}
                 </td>
                 <td className="px-6 py-4 text-slate-600">{loc.locationNumber}</td>

@@ -25,7 +25,7 @@ export const Route = createFileRoute('/client/roles/create')({
 
 const roleSchema = z.object({
   roleName: z.string().min(1, "Role name is required"),
-  isActive: z.boolean().default(true),
+  isActive: z.boolean(),
 });
 
 type RoleFormValues = z.infer<typeof roleSchema>;

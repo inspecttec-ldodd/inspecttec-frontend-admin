@@ -49,7 +49,11 @@ function ClientAssets() {
               <tr><td colSpan={6} className="p-8 text-center text-slate-500">No assets found.</td></tr>
             ) : data?.items.map((asset) => (
               <tr key={asset.id} className="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
-                <td className="px-6 py-4 font-medium">{asset.assetName}</td>
+                <td className="px-6 py-4 font-medium">
+                  <Link to="/client/assets/$assetId" params={{ assetId: asset.id }} className="hover:underline text-blue-600 dark:text-blue-400">
+                    {asset.assetName}
+                  </Link>
+                </td>
                 <td className="px-6 py-4 text-slate-600">{asset.identifyingNumber || "-"}</td>
                 <td className="px-6 py-4 text-slate-600">{asset.locationName}</td>
                 <td className="px-6 py-4 text-slate-600">{asset.assetGroupName}</td>

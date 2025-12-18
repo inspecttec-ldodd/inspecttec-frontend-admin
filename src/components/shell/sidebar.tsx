@@ -149,6 +149,12 @@ export function Sidebar() {
                                 </Link>
                             </li>
                             <li>
+                                <Link to="/client/asset-groups" className="flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium transition-colors hover:bg-slate-800 hover:text-white">
+                                    <Box className="w-4 h-4" />
+                                    Asset Groups
+                                </Link>
+                            </li>
+                            <li>
                                 <Link to="/client/locations" className="flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium transition-colors hover:bg-slate-800 hover:text-white">
                                     <MapPin className="w-4 h-4" />
                                     Locations
