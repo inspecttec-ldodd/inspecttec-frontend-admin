@@ -1,9 +1,9 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { Outlet, createFileRoute } from "@tanstack/react-router";
 
-export const Route = createFileRoute('/client/asset-groups')({
-  component: RouteComponent,
-})
+export const Route = createFileRoute("/client/asset-groups")({
+	component: AssetGroupsLayout,
+});
 
-function RouteComponent() {
-  return <div>Hello "/client/asset-groups"!</div>
+function AssetGroupsLayout() {
+	return <Outlet />;
 }

@@ -1,28 +1,30 @@
-import { PaginatedResult } from "./common";
-
 export interface AssetGroupSummary {
-    id: string;
-    name: string;
-    clientId: string;
-    assetCount: number;
-    isActive: boolean;
-    createdDate: string;
+	id: string;
+	assetGroupName: string;
+	description?: string;
+	assetType?: number; // Enum value
+	assetTypeName?: string;
+	isActive: boolean;
+	assetCount: number;
 }
 
-export interface AssetGroupListResult extends PaginatedResult<AssetGroupSummary> {
-    clientId: string;
-    clientName: string;
+export interface AssetGroupListResult {
+	items: AssetGroupSummary[];
+	totalCount: number;
+	clientId: string;
+	clientName: string;
 }
 
 export interface CreateAssetGroupRequest {
-    clientId: string;
-    groupName: string;
-    description?: string;
-    isActive?: boolean;
+	clientId: string;
+	assetGroupName: string;
+	description?: string;
+	assetType?: number;
+	isActive?: boolean;
 }
 
 export interface UpdateAssetGroupRequest {
-    groupName: string;
-    description?: string;
-    isActive: boolean;
+	assetGroupName: string;
+	description?: string;
+	isActive: boolean;
 }
